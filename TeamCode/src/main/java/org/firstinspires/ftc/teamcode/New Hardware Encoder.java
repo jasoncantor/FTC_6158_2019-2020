@@ -6,9 +6,9 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@Autonomous(name="Old Hardware Encoders", group="Pushbot")
-@Disabled
-public class Old_Hardware_Encoders extends LinearOpMode {
+@Autonomous(name="New Hardware Endcoders", group="REV")
+//@Disabled
+public class New_Hardware_Encoders extends LinearOpMode {
 
     /* Declare OpMode members. */
     private DcMotor leftDrive = null;
