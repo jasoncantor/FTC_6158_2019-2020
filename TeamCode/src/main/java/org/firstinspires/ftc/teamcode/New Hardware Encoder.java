@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Autonomous(name="New Hardware Endcoders", group="REV")
 //@Disabled
-public class New_Hardware_Encoders extends LinearOpMode {
+public class Autonomous extends LinearOpMode {
 
     /* Declare OpMode members. */
     private DcMotor leftDrive = null;
