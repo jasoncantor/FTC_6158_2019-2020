@@ -54,3 +54,4 @@ public class Mecanum extends OpMode {
 		if(Math.abs(w)<0.9) w = 0;
 		//checks deadzones
 	}
+}
