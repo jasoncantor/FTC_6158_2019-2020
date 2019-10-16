@@ -11,9 +11,9 @@ import android.view.ViewParent;
 public class Driver_Training_TeleOp extends OpMode {
     DcMotor frontleft, frontright, backleft, backright;
     Servo   arm;
-	public float x, y, z, w, pwr;
+	public float x, y, z, w, pwr, a;
 	public static double deadzone = 0.2;
-	
+
  
  
 	@Override
@@ -27,6 +27,7 @@ public class Driver_Training_TeleOp extends OpMode {
 		frontright.setDirection(DcMotor.Direction.REVERSE);
 		backright.setDirection(DcMotor.Direction.REVERSE);
 		
+		a = .5; // Defines the max motor power
 	
 	}
  
@@ -37,10 +38,10 @@ public class Driver_Training_TeleOp extends OpMode {
  
 		pwr = y; //this can be tweaked for exponential power increase
  
-		frontright.setPower(Range.clip(pwr - x+z, -1, 1));
-		backleft.setPower(Range.clip(pwr - x-z, -1, 1));
-		frontleft.setPower(Range.clip(pwr + x-z, -1, 1));
-        backright.setPower(Range.clip(pwr + x+z, -1, 1));
+		frontright.setPower(Range.clip(pwr - x+z, -a, a));
+		backleft.setPower(Range.clip(pwr - x-z, -a, a));
+		frontleft.setPower(Range.clip(pwr + x-z, -a, a));
+        backright.setPower(Range.clip(pwr + x+z, -a, a));
         
         if(gamepad1.y) {
             // move to 0 degrees.
