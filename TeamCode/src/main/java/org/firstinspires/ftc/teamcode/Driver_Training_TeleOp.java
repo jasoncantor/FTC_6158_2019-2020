@@ -13,6 +13,7 @@ public class Driver_Training_TeleOp extends OpMode {
     Servo   arm;
 	public float x, y, z, w, pwr;
 	public static double deadzone = 0.2;
+	y = .5
  
  
 	@Override
@@ -25,7 +26,7 @@ public class Driver_Training_TeleOp extends OpMode {
 		
 		frontright.setDirection(DcMotor.Direction.REVERSE);
 		backright.setDirection(DcMotor.Direction.REVERSE);
- 
+		
 	
 	}
  
