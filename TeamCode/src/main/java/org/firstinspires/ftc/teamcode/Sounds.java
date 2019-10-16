@@ -49,8 +49,8 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
  */
 
 @TeleOp(name="SKYSTONE Sounds", group="Concept")
-@Disabled
-public class ConceptSoundsSKYSTONE extends LinearOpMode {
+//@Disabled
+public class Sounds extends LinearOpMode {
 
     // List of available sound resources
     String  sounds[] =  {"ss_alarm", "ss_bb8_down", "ss_bb8_up", "ss_darth_vader", "ss_fly_by",
