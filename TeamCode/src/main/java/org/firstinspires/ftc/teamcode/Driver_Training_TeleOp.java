@@ -7,7 +7,8 @@ import android.os.Handler;
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.ViewParent;
- 
+
+@TeleOp(name="Driver Training", group="REV")
 public class Driver_Training_TeleOp extends OpMode {
     DcMotor frontleft, frontright, backleft, backright;
     Servo   arm;

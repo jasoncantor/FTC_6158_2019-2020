@@ -8,6 +8,7 @@ import android.os.SystemClock;
 import android.util.Log;
 import android.view.ViewParent;
  
+@TeleOp(name="Mecanum", group="REV")
 public class Mecanum extends OpMode {
 	DcMotor frontleft, frontright, backleft, backright;
 	public float x, y, z, w, pwr;
