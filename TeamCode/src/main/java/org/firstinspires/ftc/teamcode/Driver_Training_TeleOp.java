@@ -3,6 +3,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.GyroSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.util.Log;
@@ -23,12 +24,12 @@ public class Driver_Training_TeleOp extends OpMode {
 		frontright = hardwareMap.dcMotor.get("front_right");
 		backleft = hardwareMap.dcMotor.get("back_left");
         backright = hardwareMap.dcMotor.get("back_right");
-        arm = hardwareMap.Servo.get("arm");
+        arm = hardwareMap.servo.get("arm");
 		
 		frontright.setDirection(DcMotor.Direction.REVERSE);
 		backright.setDirection(DcMotor.Direction.REVERSE);
 		
-		a = .5; // Defines the max motor power
+		double a = .5; // Defines the max motor power
 	
 	}
  

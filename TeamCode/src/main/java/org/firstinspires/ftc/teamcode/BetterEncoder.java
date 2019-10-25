@@ -11,7 +11,7 @@ import org.firstinspires.ftc.teamcode.Robot.Drivetrain.Odometry.OdometryGlobalCo
 
 
 @TeleOp(name = "My Encoder OpMode")
-public class MyEncodersOpmode extends LinearOpMode {
+public class BetterEncoder extends LinearOpMode {
     //Drive motors
     DcMotor right_front, right_back, left_front, left_back;
     //Odometry Wheels

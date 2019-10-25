@@ -1,5 +1,5 @@
 //This is encoders to run a certain distance please fill out the information correct
-package org.firstinspires.ftc;
+package org.firstinspires.ftcRobotController;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Autonomous(name="New Hardware Endcoders", group="REV")
 //@Disabled
-public class Autonomous extends LinearOpMode {
+public class New_Hardware_Encoder extends LinearOpMode {
 
     /* Declare OpMode members. */
     private DcMotor leftDrive = null;
