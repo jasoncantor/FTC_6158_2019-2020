@@ -73,7 +73,7 @@ public class BetterEncoder extends LinearOpMode {
 
         double distance = Math.hypot(distanceToXTarget,distanceToYTarget);
 
-        while(opModeIsActive && distance > allowableDistancError){
+        while(opModeIsActive() && distance > allowableDistancError){
             
             distance = Math.hypot(distanceToXTarget,distanceToYTarget);
             distanceToXTarget = TargetXPosition - globalPositionUpdate.returnXCoordinate();
