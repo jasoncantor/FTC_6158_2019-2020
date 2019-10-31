@@ -3,13 +3,14 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.GyroSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import android.os.Handler;
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.ViewParent;
  
 @TeleOp(name="TeleOp 2019-2020", group="REV")
-public class TeleOp extends OpMode {
+public class 2019-2020 extends OpMode {
 	DcMotor frontleft, frontright, backleft, backright;
 	public float x, y, z, w, pwr;
 	public static double deadzone = 0.2;
