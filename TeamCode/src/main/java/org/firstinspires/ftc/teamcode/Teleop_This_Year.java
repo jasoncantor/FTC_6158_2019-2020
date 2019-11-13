@@ -10,7 +10,7 @@ import android.util.Log;
 import android.view.ViewParent;
  
 @TeleOp(name="TeleOp 2019-2020", group="REV")
-public class 2019-2020 extends OpMode {
+public class Teleop_This_Year extends OpMode {
 	DcMotor frontleft, frontright, backleft, backright;
 	public float x, y, z, w, pwr;
 	public static double deadzone = 0.2;
