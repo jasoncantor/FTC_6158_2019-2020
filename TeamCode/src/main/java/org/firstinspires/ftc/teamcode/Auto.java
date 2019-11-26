@@ -13,7 +13,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
-@Autonomous(name="6158 2019-2020", group="Auto Done")
+@Autonomous(name = "6158 2019-2020 Auto", group="Final")
 public class Auto extends LinearOpMode {
     //
     DcMotor frontleft;
@@ -50,15 +50,21 @@ public class Auto extends LinearOpMode {
         //
         waitForStartify();
         //
-        moveToPosition(26.8, 0.2);
+        strafeToPosition(25.8, 0.2);
 	//
-	strafeToPosition(-75.0, 0.2);
+	turnWithGyro(90, -0.2);
 	//
-	strafeToPosition(-17.4, 0.2);
+	turnWithGyro(90, 0.2);
 	//
-	moveToPosition(-23.4, 0.2);
+	moveToPosition(78, 0.2);
 	//
-	strafeToPosition(56.4, 0.2);
+	turnWithGyro(90, -0.2);
+	//
+	turnWithGyro(90, 0.2);
+	//
+	strafeToPosition(-25.0, 0.2);
+	//
+	moveToPosition(-42.4, 0.2);
 	//
     }
     //

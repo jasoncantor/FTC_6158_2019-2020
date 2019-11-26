@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-@Autonomous(name="Calibrate", group="Calibrate")
+@Autonomous(name="Calibrate", group="Final")
 public class Calibrate extends LinearOpMode {
     //
     DcMotor frontleft;
