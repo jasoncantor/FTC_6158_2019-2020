@@ -14,7 +14,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
 @Autonomous(name="6158 2019-2020", group="Auto Done")
-public class 61580Auto0201902020 extends LinearOpMode {
+public class Auto extends LinearOpMode {
     //
     DcMotor frontleft;
     DcMotor frontright;
