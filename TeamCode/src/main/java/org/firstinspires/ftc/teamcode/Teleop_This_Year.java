@@ -12,8 +12,8 @@ import android.view.ViewParent;
 @TeleOp(name="TeleOp 2019-2020", group="REV")
 public class Teleop_This_Year extends OpMode {
 	DcMotor frontleft, frontright, backleft, backright, armhoz, armro;
-	Servo arm;
-	public float x, y, z, w, pwr;
+	Servo arm, arm2;
+	public float x, y, z, w, pwr, amountofpowerforarmro, amountofpowerforarmhoz;
 	public static double deadzone = 0.2;
  
  
@@ -30,9 +30,10 @@ public class Teleop_This_Year extends OpMode {
 		
 		frontright.setDirection(DcMotor.Direction.REVERSE);
 		backright.setDirection(DcMotor.Direction.REVERSE);
-		armhoz.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-		armhoz.setMode(DcMotor.RunMode.RUN_TO_POSITION);
- 
+		armhoz.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+		armro.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+		arm.setPostion(0);
+		//arm2.setPostion(1); // Uncomment this is there is two servo for grab
 	
 	}
  
@@ -42,11 +43,28 @@ public class Teleop_This_Year extends OpMode {
 		//updates joyvalues with deadzones, xyzw
  
 		pwr = y; //this can be tweaked for exponential power increase
+		amountofpowerforarmro = 0.15; // Change this if you want to increase or decrese the power for the amount of power for armro
+		amountofpowerforarmhoz = 0.25; // Change this if you want to increase or decrese the power for the amount of power for armhoz
  
 		frontright.setPower(Range.clip(pwr - x+z, -1, 1));
 		backleft.setPower(Range.clip(pwr - x-z, -1, 1));
 		frontleft.setPower(Range.clip(pwr + x-z, -1, 1));
 		backright.setPower(Range.clip(pwr + x+z, -1, 1));
+
+		
+		armro.setPower(Range.clip(amountofpowerforarmro, + rightstick, -1, 1));
+		armhoz.setPower(Range.clip(amountofpowerforarmhoz, + leftstick, -1, 1));
+
+		if(gamepad2.y){
+			arm.setPostion(0);
+			//arm2.setPostion(1); // Uncomment this is there is two servo for grab
+		} else if (gamepad2.x || gamepad2.b){
+			arm.setPostion(0.5);
+			//arm2.setPostion(0.5); // Uncomment this is there is two servo for grab
+		} else if (gamepad2.a){
+			arm.setPostion(1);
+			//arm2.setPostion(0); // Uncomment this is there is two servo for grab
+		}
 	}
  
 	public void getJoyVals()
@@ -55,12 +73,16 @@ public class Teleop_This_Year extends OpMode {
 		x = gamepad1.left_stick_x;
 		z = gamepad1.right_stick_x;
 		w = gamepad1.right_stick_y;
+		leftstick = gamepad2.left_stick_y;
+		rightstick = gamepad2.right_stick_y;
 		//updates joystick values
  
 		if(Math.abs(x)<deadzone) x = 0;
 		if(Math.abs(y)<deadzone) y = 0;
 		if(Math.abs(z)<deadzone) z = 0;
 		if(Math.abs(w)<0.9) w = 0;
+		if(Math.abs(rightstick)<deadzone) rightstick = 0;
+		if(Math.abs(leftstick)<deadzone) leftstick = 0;
 		//checks deadzones
 	}
 }
