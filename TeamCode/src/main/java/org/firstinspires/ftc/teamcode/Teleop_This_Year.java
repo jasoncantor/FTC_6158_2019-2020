@@ -13,10 +13,9 @@ import android.view.ViewParent;
 public class Teleop_This_Year extends OpMode {
 	DcMotor frontleft, frontright, backleft, backright, armhoz, armro;
 	Servo arm, arm2;
-	public float x, y, z, w, pwr, amountofpowerforarmro, amountofpowerforarmhoz;
+	public float x, y, z, w, pwr, leftstick, rightstick;
 	public static double deadzone = 0.2;
- 
- 
+
 	@Override
 	public void init() {
 		frontleft = hardwareMap.dcMotor.get("frontleft");
@@ -25,20 +24,21 @@ public class Teleop_This_Year extends OpMode {
 		backright = hardwareMap.dcMotor.get("backright");
 		armhoz = hardwareMap.dcMotor.get("armhoz"); // this is the arm that move on a horizontal axis
 		armro = hardwareMap.dcMotor.get("armro"); //this is the arm that rotates
-		arm = hardwareMap.Servo.get("arm"); //this is the servo that grabs
-		//arm2 = hardwareMap.Servo.get("arm2"); // this is the one that grabs too if there is two servos then uncomment this but the first comment slash
+		arm = hardwareMap.servo.get("arm"); //this is the servo that grabs
+		arm2 = hardwareMap.servo.get("arm2"); // this is the one that grabs too if there is two servos then uncomment this but the first comment slash
 		
 		frontright.setDirection(DcMotor.Direction.REVERSE);
 		backright.setDirection(DcMotor.Direction.REVERSE);
 		armhoz.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 		armro.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-		arm.setPostion(0);
+		arm.setPosition(0);
 		//arm2.setPostion(1); // Uncomment this is there is two servo for grab
 	
 	}
  
 	@Override
 	public void loop() {
+		double amountofpowerforarmro, amountofpowerforarmhoz;
 		getJoyVals();
 		//updates joyvalues with deadzones, xyzw
  
@@ -52,18 +52,18 @@ public class Teleop_This_Year extends OpMode {
 		backright.setPower(Range.clip(pwr + x+z, -1, 1));
 
 		
-		armro.setPower(Range.clip(amountofpowerforarmro, + rightstick, -1, 1));
-		armhoz.setPower(Range.clip(amountofpowerforarmhoz, + leftstick, -1, 1));
+		armro.setPower(Range.clip(amountofpowerforarmro + rightstick, -1, 1));
+		armhoz.setPower(Range.clip(amountofpowerforarmhoz + leftstick, -1, 1));
 
 		if(gamepad2.y){
-			arm.setPostion(0);
-			//arm2.setPostion(1); // Uncomment this is there is two servo for grab
+			arm.setPosition(0);
+			//arm2.setPosition(1); // Uncomment this is there is two servo for grab
 		} else if (gamepad2.x || gamepad2.b){
-			arm.setPostion(0.5);
-			//arm2.setPostion(0.5); // Uncomment this is there is two servo for grab
+			arm.setPosition(0.5);
+			//arm2.setPosition(0.5); // Uncomment this is there is two servo for grab
 		} else if (gamepad2.a){
-			arm.setPostion(1);
-			//arm2.setPostion(0); // Uncomment this is there is two servo for grab
+			arm.setPosition(1);
+			//arm2.setPosition(0); // Uncomment this is there is two servo for grab
 		}
 	}
  
