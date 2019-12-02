@@ -11,20 +11,27 @@ import android.view.ViewParent;
  
 @TeleOp(name="TeleOp 2019-2020", group="REV")
 public class Teleop_This_Year extends OpMode {
-	DcMotor frontleft, frontright, backleft, backright;
+	DcMotor frontleft, frontright, backleft, backright, armhoz, armro;
+	Servo arm;
 	public float x, y, z, w, pwr;
 	public static double deadzone = 0.2;
  
  
 	@Override
 	public void init() {
-		frontleft = hardwareMap.dcMotor.get("front_left");
-		frontright = hardwareMap.dcMotor.get("front_right");
-		backleft = hardwareMap.dcMotor.get("back_left");
-		backright = hardwareMap.dcMotor.get("back_right");
+		frontleft = hardwareMap.dcMotor.get("frontleft");
+		frontright = hardwareMap.dcMotor.get("frontright");
+		backleft = hardwareMap.dcMotor.get("backleft");
+		backright = hardwareMap.dcMotor.get("backright");
+		armhoz = hardwareMap.dcMotor.get("armhoz"); // this is the arm that move on a horizontal axis
+		armro = hardwareMap.dcMotor.get("armro"); //this is the arm that rotates
+		arm = hardwareMap.Servo.get("arm"); //this is the servo that grabs
+		//arm2 = hardwareMap.Servo.get("arm2"); // this is the one that grabs too if there is two servos then uncomment this but the first comment slash
 		
 		frontright.setDirection(DcMotor.Direction.REVERSE);
 		backright.setDirection(DcMotor.Direction.REVERSE);
+		armhoz.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+		armhoz.setMode(DcMotor.RunMode.RUN_TO_POSITION);
  
 	
 	}
