@@ -21,7 +21,7 @@ public class Auto extends LinearOpMode {
     DcMotor backleft;
     DcMotor backright;
     //28 * 20 / (2ppi * 4.125)
-    Double width = 16.0; //inches
+    Double width = 16.5; //inches
     Integer cpr = 28; //counts per rotation
     Integer gearratio = 60;
     Double diameter = 4.125;

@@ -57,13 +57,13 @@ public class Teleop_This_Year extends OpMode {
 
 		if(gamepad2.y){
 			arm.setPosition(0);
-			//arm2.setPosition(1); // Uncomment this is there is two servo for grab
+			arm2.setPosition(1); // Uncomment this is there is two servo for grab
 		} else if (gamepad2.x || gamepad2.b){
 			arm.setPosition(0.5);
-			//arm2.setPosition(0.5); // Uncomment this is there is two servo for grab
+			arm2.setPosition(0.5); // Uncomment this is there is two servo for grab
 		} else if (gamepad2.a){
 			arm.setPosition(1);
-			//arm2.setPosition(0); // Uncomment this is there is two servo for grab
+			arm2.setPosition(0); // Uncomment this is there is two servo for grab
 		}
 	}
  
