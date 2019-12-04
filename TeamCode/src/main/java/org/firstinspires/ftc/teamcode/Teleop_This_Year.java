@@ -32,7 +32,7 @@ public class Teleop_This_Year extends OpMode {
 		armhoz.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 		armro.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 		arm.setPosition(0);
-		arm2.setPostion(1); // Uncomment this is there is two servo for grab
+		arm2.setPosition(1); // Uncomment this is there is two servo for grab
 	
 	}
  
