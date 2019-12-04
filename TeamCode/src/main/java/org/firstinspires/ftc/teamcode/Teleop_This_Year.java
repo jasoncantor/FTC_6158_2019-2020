@@ -15,6 +15,7 @@ public class Teleop_This_Year extends OpMode {
 	Servo arm, arm2;
 	public float x, y, z, w, pwr, leftstick, rightstick;
 	public static double deadzone = 0.2;
+	public  static double power = 0.40;
 
 	@Override
 	public void init() {
@@ -29,8 +30,8 @@ public class Teleop_This_Year extends OpMode {
 		
 		frontright.setDirection(DcMotor.Direction.REVERSE);
 		backright.setDirection(DcMotor.Direction.REVERSE);
-		armhoz.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-		armro.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+		armhoz.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+		armro.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 		arm.setPosition(0);
 		arm2.setPosition(1); // Uncomment this is there is two servo for grab
 	
@@ -46,14 +47,14 @@ public class Teleop_This_Year extends OpMode {
 		amountofpowerforarmro = 0.15; // Change this if you want to increase or decrese the power for the amount of power for armro
 		amountofpowerforarmhoz = 0.25; // Change this if you want to increase or decrese the power for the amount of power for armhoz
  
-		frontright.setPower(Range.clip(pwr - x+z, -1, 1));
-		backleft.setPower(Range.clip(pwr - x-z, -1, 1));
-		frontleft.setPower(Range.clip(pwr + x-z, -1, 1));
-		backright.setPower(Range.clip(pwr + x+z, -1, 1));
+		frontright.setPower(Range.clip(pwr - x+z, -power, power));
+		backleft.setPower(Range.clip(pwr - x-z, -power, power));
+		frontleft.setPower(Range.clip(pwr + x-z, -power, power));
+		backright.setPower(Range.clip(pwr + x+z, -power, power));
 
 		
-		armro.setPower(Range.clip(amountofpowerforarmro + rightstick, -1, 1));
-		armhoz.setPower(Range.clip(amountofpowerforarmhoz + leftstick, -1, 1));
+		armro.setPower(Range.clip(amountofpowerforarmro + gamepad2.right_stick_y, -amountofpowerforarmro, amountofpowerforarmro));
+		armhoz.setPower(Range.clip(amountofpowerforarmhoz + gamepad2.left_stick_y, -amountofpowerforarmhoz, amountofpowerforarmhoz));
 
 		if(gamepad2.y){
 			arm.setPosition(0);

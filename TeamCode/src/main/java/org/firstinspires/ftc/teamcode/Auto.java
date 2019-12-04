@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -16,6 +17,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 //import org.omg.CORBA.portable.ServantObject;
 
 @Autonomous(name = "Depo Left: 6158 2019-2020 Auto", group="Final")
+@Disabled
 public class Auto extends LinearOpMode {
     //
     DcMotor frontleft;
@@ -61,10 +63,9 @@ public class Auto extends LinearOpMode {
         rotate.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         grabber.setPosition(0);
         grabber2.setPosition(1);
+
         extend.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         rotate.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        extend.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        rotate.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         //
         waitForStartify();
         //
@@ -342,7 +343,11 @@ public class Auto extends LinearOpMode {
         int degrees2 = (int)(Math.abs(cpr * degreestorotate));
         int degrees3 = (int)(Math.abs(degrees2 / 360));
         extend.setTargetPosition(extend.getCurrentPosition() + movetoextend);
-        rotate.setTargetPosition(rotate.getCurrentPosition() + degrees2);
+        rotate.setTargetPosition(rotate.getCurrentPosition() + degrees3);
+
+
+        extend.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rotate.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         extend.setPower(speedtoextend);
         while (extend.isBusy()) {}
@@ -354,7 +359,7 @@ public class Auto extends LinearOpMode {
         grabber2.setPosition(0.5);
         sleep(50);
         extend.setTargetPosition(extend.getCurrentPosition() - movetoextend);
-        rotate.setTargetPosition(rotate.getCurrentPosition() - degrees2);
+        rotate.setTargetPosition(rotate.getCurrentPosition() - degrees3);
 
         rotate.setPower(-speedtorotate);
         while (rotate.isBusy()){}
@@ -369,7 +374,9 @@ public class Auto extends LinearOpMode {
         int degrees2 = (int)(Math.abs(cpr * degreestorotate));
         int degrees3 = (int)(Math.abs(degrees2 / 360));
         extend.setTargetPosition(extend.getCurrentPosition() + movetoextend);
-        rotate.setTargetPosition(rotate.getCurrentPosition() + degrees2);
+        rotate.setTargetPosition(rotate.getCurrentPosition() + degrees3);
+        extend.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rotate.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         extend.setPower(speedtoextend);
         while (extend.isBusy()) {}
@@ -381,7 +388,7 @@ public class Auto extends LinearOpMode {
         grabber2.setPosition(0);
         sleep(50);
         extend.setTargetPosition(extend.getCurrentPosition() - movetoextend);
-        rotate.setTargetPosition(rotate.getCurrentPosition() - degrees2);
+        rotate.setTargetPosition(rotate.getCurrentPosition() - degrees3);
         rotate.setPower(-speedtorotate);
         while (rotate.isBusy()){}
         rotate.setPower(0);
