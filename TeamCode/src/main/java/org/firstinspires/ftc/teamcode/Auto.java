@@ -6,12 +6,14 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.navigation.Acceleration;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
+import org.omg.CORBA.portable.ServantObject;
 
 @Autonomous(name = "Depo Left: 6158 2019-2020 Auto", group="Final")
 public class Auto extends LinearOpMode {
@@ -20,6 +22,10 @@ public class Auto extends LinearOpMode {
     DcMotor frontright;
     DcMotor backleft;
     DcMotor backright;
+    DcMotor extend;
+    DcMotor rotate;
+    Servo   grabber;
+    Servo   grabber2;
     //28 * 20 / (2ppi * 4.125)
     Double width = 16.5; //inches
     Integer cpr = 28; //counts per rotation
@@ -44,16 +50,26 @@ public class Auto extends LinearOpMode {
         frontright = hardwareMap.dcMotor.get("frontright");
         backleft = hardwareMap.dcMotor.get("backleft");
         backright = hardwareMap.dcMotor.get("backright");
+        extend = hardwareMap.dcMotor.get("armhoz");
+        roate = hardwareMap.dcMotor.get("armro");
+        grabber = hardwareMap.Servo.get("arm");
+        grabber2 = hardwareMap.Servo.get("arm2");
 
         frontright.setDirection(DcMotorSimple.Direction.REVERSE);
         backright.setDirection(DcMotorSimple.Direction.REVERSE);
+        extend.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        roate.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        grabber.setPosition(0);
+		grabber2.setPosition(1);
         //
         waitForStartify();
         //
         strafeToPosition(25.8, 0.2);
 	//
 	turnWithGyro(90, -0.2);
-	//
+    //
+    grabskystone(2, 0.2, 20, 0.2);
+    //
 	turnWithGyro(90, 0.2);
 	//
 	moveToPosition(78, 0.2);
@@ -213,10 +229,14 @@ public class Auto extends LinearOpMode {
         frontright.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         backleft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         backright.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        extend.setMode(Dcmotor.RunMode.STOP_AND_RESET_ENCODER);
+        rotate.setMode(Dcmotor.RunMoe.STOP_AND_RESET_ENCODER);
         frontleft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         frontright.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         backleft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         backright.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        extend.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rotate.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
     //
     /*
@@ -312,4 +332,37 @@ public class Auto extends LinearOpMode {
         backright.setPower(-input);
     }
     //
+    public void grabskystone(double inchestoextend, double speedtoextend, double degreestorotate, double speedtorotate){
+        int movetoextend = (int)(Math.round(inchestoextend * cpi * meccyBias));
+        /*public double convertify2(degreestorotate){
+            if (degreestorotate > 179){
+                degreestorotate = -(360 - degreestorotate);
+            } else if(degreestorotate < -180){
+                degreestorotate = 360 + degreestorotate;
+            } else if(degreestorotate > 360){
+                degreestorotate = degreestorotate - 360;
+            }
+            return degreestorotate;
+        }*/
+        extend.setTargetPosition(extend.getCurrentPosition() + move);
+        rotate.setTargetPosition(rotate.getCurrentPosition() + degreestorotate);
+
+        extend.setPower(speedtoextend);
+        while (extend.isBusy()) {}
+        extend.setPower(0);
+        rotate.setPower(speedtorotate);
+        while (rotate.isBusy()){}
+        rotate.setPower(0);
+        grabber.setPosition(0.5);
+        grabber2.setPosition(0.5);
+        extend.setTargetPosition(extend.getCurrentPosition() - move);
+        rotate.setTargetPosition(rotate.getCurrentPosition() - degreestorotate);
+
+        rotate.setPower(-speedtorotate);
+        while (rotate.isBusy()){}
+        rotate.setPower(0);
+        extend.setPower(-speedtoextend);
+        while (extend.isBusy()){}
+        extend.setPower(0);
+    }
 }
