@@ -340,7 +340,7 @@ public class Auto extends LinearOpMode {
             double speedtorotate) {
         int movetoextend = (int)(Math.round(inchestoextend * cpi * meccyBias)); 
         int degrees2 = (int)(Math.abs(cpr * degreestorotate));
-        int degrees3 = (int)(Math.floorDiv(degrees2, 360));
+        int degrees3 = (int)(Math.abs(degrees2 / 360));
         extend.setTargetPosition(extend.getCurrentPosition() + movetoextend);
         rotate.setTargetPosition(rotate.getCurrentPosition() + degrees2);
 
@@ -367,7 +367,7 @@ public class Auto extends LinearOpMode {
     public void placestone(double inchestoextend, double speedtoextend, double degreestorotate, double speedtorotate){
         int movetoextend = (int)(Math.round(inchestoextend * cpi * meccyBias));
         int degrees2 = (int)(Math.abs(cpr * degreestorotate));
-        int degrees3 = (int)(Math.floorDiv(degrees2, 360));
+        int degrees3 = (int)(Math.abs(degrees2 / 360));
         extend.setTargetPosition(extend.getCurrentPosition() + movetoextend);
         rotate.setTargetPosition(rotate.getCurrentPosition() + degrees2);
 
