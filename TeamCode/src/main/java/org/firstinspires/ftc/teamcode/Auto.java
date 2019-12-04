@@ -60,7 +60,11 @@ public class Auto extends LinearOpMode {
         extend.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rotate.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         grabber.setPosition(0);
-		grabber2.setPosition(1);
+        grabber2.setPosition(1);
+        extend.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        rotate.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        extend.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rotate.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         //
         waitForStartify();
         //
@@ -231,14 +235,12 @@ public class Auto extends LinearOpMode {
         frontright.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         backleft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         backright.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        extend.setMode(Dcmotor.RunMode.STOP_AND_RESET_ENCODER);
-        rotate.setMode(Dcmotor.RunMoe.STOP_AND_RESET_ENCODER);
+      
         frontleft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         frontright.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         backleft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         backright.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        extend.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        rotate.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        
     }
     //
     /*
@@ -337,7 +339,7 @@ public class Auto extends LinearOpMode {
     public void grabskystone(double inchestoextend, double speedtoextend, double degreestorotate,
             double speedtorotate) {
         int movetoextend = (int)(Math.round(inchestoextend * cpi * meccyBias)); 
-        int degrees2 = Math.abs(cpr *degreestorotate);
+        int degrees2 = Math.abs(cpr * degreestorotate);
         int degrees3 = Math.floorDiv(degrees2, 360);
         extend.setTargetPosition(extend.getCurrentPosition() + movetoextend);
         rotate.setTargetPosition(rotate.getCurrentPosition() + degrees2);
@@ -364,7 +366,7 @@ public class Auto extends LinearOpMode {
     //The Function below is used to place a skystone
     public void placestone(double inchestoextend, double speedtoextend, double degreestorotate, double speedtorotate){
         int movetoextend = (int)(Math.round(inchestoextend * cpi * meccyBias));
-        int degrees2 = Math.abs(cpr *degreestorotate);
+        int degrees2 = Math.abs(cpr * degreestorotate);
         int degrees3 = Math.floorDiv(degrees2, 360);
         extend.setTargetPosition(extend.getCurrentPosition() + movetoextend);
         rotate.setTargetPosition(rotate.getCurrentPosition() + degrees2);
