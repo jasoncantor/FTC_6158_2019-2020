@@ -332,9 +332,9 @@ public class Auto extends LinearOpMode {
         backright.setPower(-input);
     }
     //
-    public void grabskystone(double inchestoextend, double speedtoextend, double degreestorotate, double speedtorotate){
+    public double grabskystone(double inchestoextend, double speedtoextend, double degreestorotate,
+            double speedtorotate) {
         int movetoextend = (int)(Math.round(inchestoextend * cpi * meccyBias));
-        /*public double convertify2(degreestorotate){
             if (degreestorotate > 179){
                 degreestorotate = -(360 - degreestorotate);
             } else if(degreestorotate < -180){
@@ -343,7 +343,6 @@ public class Auto extends LinearOpMode {
                 degreestorotate = degreestorotate - 360;
             }
             return degreestorotate;
-        }*/
         extend.setTargetPosition(extend.getCurrentPosition() + move);
         rotate.setTargetPosition(rotate.getCurrentPosition() + degreestorotate);
 
