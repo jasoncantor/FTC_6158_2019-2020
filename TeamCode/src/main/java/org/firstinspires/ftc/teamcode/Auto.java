@@ -51,14 +51,14 @@ public class Auto extends LinearOpMode {
         backleft = hardwareMap.dcMotor.get("backleft");
         backright = hardwareMap.dcMotor.get("backright");
         extend = hardwareMap.dcMotor.get("armhoz");
-        roate = hardwareMap.dcMotor.get("armro");
-        grabber = hardwareMap.Servo.get("arm");
-        grabber2 = hardwareMap.Servo.get("arm2");
+        rotate = hardwareMap.dcMotor.get("armro");
+        grabber = hardwareMap.servo.get("arm");
+        grabber2 = hardwareMap.servo.get("arm2");
 
         frontright.setDirection(DcMotorSimple.Direction.REVERSE);
         backright.setDirection(DcMotorSimple.Direction.REVERSE);
         extend.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        roate.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        rotate.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         grabber.setPosition(0);
 		grabber2.setPosition(1);
         //
@@ -338,7 +338,7 @@ public class Auto extends LinearOpMode {
             double speedtorotate) {
         int movetoextend = (int)(Math.round(inchestoextend * cpi * meccyBias)); 
         int degrees2 = (degreestorotate*cpr)/360;
-        extend.setTargetPosition(extend.getCurrentPosition() + move);
+        extend.setTargetPosition(extend.getCurrentPosition() + movetoextend);
         rotate.setTargetPosition(rotate.getCurrentPosition() + degrees2);
 
         extend.setPower(speedtoextend);
@@ -350,7 +350,7 @@ public class Auto extends LinearOpMode {
         grabber.setPosition(0.5);
         grabber2.setPosition(0.5);
         sleep(50);
-        extend.setTargetPosition(extend.getCurrentPosition() - move);
+        extend.setTargetPosition(extend.getCurrentPosition() - movetoextend);
         rotate.setTargetPosition(rotate.getCurrentPosition() - degrees2);
 
         rotate.setPower(-speedtorotate);
@@ -364,7 +364,7 @@ public class Auto extends LinearOpMode {
     public void placestone(double inchestoextend, double speedtoextend, double degreestorotate, double speedtorotate){
         int movetoextend = (int)(Math.round(inchestoextend * cpi * meccyBias));
         int degrees2 = (degreestorotate*cpr)/360;
-        extend.setTargetPosition(extend.getCurrentPosition() + move);
+        extend.setTargetPosition(extend.getCurrentPosition() + movetoextend);
         rotate.setTargetPosition(rotate.getCurrentPosition() + degrees2);
 
         extend.setPower(speedtoextend);
@@ -376,7 +376,7 @@ public class Auto extends LinearOpMode {
         grabber.setPosition(0);
         grabber2.setPosition(0);
         sleep(50);
-        extend.setTargetPosition(extend.getCurrentPosition() - move);
+        extend.setTargetPosition(extend.getCurrentPosition() - movetoextend);
         rotate.setTargetPosition(rotate.getCurrentPosition() - degrees2);
         rotate.setPower(-speedtorotate);
         while (rotate.isBusy()){}
