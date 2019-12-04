@@ -68,14 +68,16 @@ public class Auto extends LinearOpMode {
 	//
 	turnWithGyro(90, -0.2);
     //
-    grabskystone(2, 0.2, 20, 0.2);
+    grabskystone(2, 0.2, 50, 0.2);
     //
 	turnWithGyro(90, 0.2);
 	//
 	moveToPosition(78, 0.2);
 	//
 	turnWithGyro(90, -0.2);
-	//
+    //
+    placestone(2, 0.2, 40, 0.2);
+    //
 	turnWithGyro(90, 0.2);
 	//
 	strafeToPosition(-25.0, 0.2);
@@ -331,20 +333,13 @@ public class Auto extends LinearOpMode {
         frontright.setPower(-input);
         backright.setPower(-input);
     }
-    //
-    public double grabskystone(double inchestoextend, double speedtoextend, double degreestorotate,
+    //The Function below is to use to pick up a sky stone
+    public void grabskystone(double inchestoextend, double speedtoextend, double degreestorotate,
             double speedtorotate) {
-        int movetoextend = (int)(Math.round(inchestoextend * cpi * meccyBias));
-            if (degreestorotate > 179){
-                degreestorotate = -(360 - degreestorotate);
-            } else if(degreestorotate < -180){
-                degreestorotate = 360 + degreestorotate;
-            } else if(degreestorotate > 360){
-                degreestorotate = degreestorotate - 360;
-            }
-            return degreestorotate;
+        int movetoextend = (int)(Math.round(inchestoextend * cpi * meccyBias)); 
+        int degrees2 = (degreestorotate*cpr)/360;
         extend.setTargetPosition(extend.getCurrentPosition() + move);
-        rotate.setTargetPosition(rotate.getCurrentPosition() + degreestorotate);
+        rotate.setTargetPosition(rotate.getCurrentPosition() + degrees2);
 
         extend.setPower(speedtoextend);
         while (extend.isBusy()) {}
@@ -354,9 +349,35 @@ public class Auto extends LinearOpMode {
         rotate.setPower(0);
         grabber.setPosition(0.5);
         grabber2.setPosition(0.5);
+        sleep(50);
         extend.setTargetPosition(extend.getCurrentPosition() - move);
-        rotate.setTargetPosition(rotate.getCurrentPosition() - degreestorotate);
+        rotate.setTargetPosition(rotate.getCurrentPosition() - degrees2);
 
+        rotate.setPower(-speedtorotate);
+        while (rotate.isBusy()){}
+        rotate.setPower(0);
+        extend.setPower(-speedtoextend);
+        while (extend.isBusy()){}
+        extend.setPower(0);
+    }
+    //The Function below is used to place a skystone
+    public void placestone(double inchestoextend, double speedtoextend, double degreestorotate, double speedtorotate){
+        int movetoextend = (int)(Math.round(inchestoextend * cpi * meccyBias));
+        int degrees2 = (degreestorotate*cpr)/360;
+        extend.setTargetPosition(extend.getCurrentPosition() + move);
+        rotate.setTargetPosition(rotate.getCurrentPosition() + degrees2);
+
+        extend.setPower(speedtoextend);
+        while (extend.isBusy()) {}
+        extend.setPower(0);
+        rotate.setPower(speedtorotate);
+        while (rotate.isBusy()){}
+        rotate.setPower(0);
+        grabber.setPosition(0);
+        grabber2.setPosition(0);
+        sleep(50);
+        extend.setTargetPosition(extend.getCurrentPosition() - move);
+        rotate.setTargetPosition(rotate.getCurrentPosition() - degrees2);
         rotate.setPower(-speedtorotate);
         while (rotate.isBusy()){}
         rotate.setPower(0);
