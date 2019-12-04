@@ -10,6 +10,8 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
+
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.Func;
@@ -27,13 +29,14 @@ import java.util.List;
 import java.util.Locale;
 
 @Autonomous(name = "Auto_Scanning test", group= "Autonomous")
+@Disabled
 public class Auto_Scanning_test extends LinearOpMode {
 
     // Robot definitions
-    public DcMotor motorFrontRight;
-    public DcMotor motorFrontLeft;
-    public DcMotor motorBackRight;
-    public DcMotor motorBackLeft;
+    public DcMotor frontleft;
+    public DcMotor frontright;
+    public DcMotor backleft;
+    public DcMotor backright;
     double step = 1;
     double scanstep = 0;
     double pos = 0;
@@ -86,31 +89,31 @@ public class Auto_Scanning_test extends LinearOpMode {
     public void runOpMode(){
 
         // Drivetrain initialization
-        motorFrontLeft = hardwareMap.dcMotor.get("FL");
-        motorFrontRight = hardwareMap.dcMotor.get("FR");
-        motorBackLeft = hardwareMap.dcMotor.get("BL");
-        motorBackRight = hardwareMap.dcMotor.get("BR");
+        frontleft = hardwareMap.dcMotor.get("frontleft");
+        frontright = hardwareMap.dcMotor.get("frontright");
+        backleft = hardwareMap.dcMotor.get("backleft");
+        backright = hardwareMap.dcMotor.get("backright");
 
-        motorFrontLeft.setDirection(DcMotor.Direction.REVERSE);
-        motorFrontRight.setDirection(DcMotor.Direction.FORWARD);
-        motorBackLeft.setDirection(DcMotor.Direction.REVERSE);
-        motorBackRight.setDirection(DcMotor.Direction.FORWARD);
+        frontright.setDirection(DcMotor.Direction.REVERSE);
+        frontleft.setDirection(DcMotor.Direction.FORWARD);
+        backright.setDirection(DcMotor.Direction.REVERSE);
+        backleft.setDirection(DcMotor.Direction.FORWARD);
 
         // Encoder initialization
         telemetry.addData("Status", "Resetting Encoders");
         telemetry.update();
 
         //Stops and Resets Encoders
-        motorFrontLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        motorFrontRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        motorBackLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        motorBackRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        frontleft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        frontright.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        backleft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        backright.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         //Tells Robots to Reset Encoders
-        motorFrontLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motorFrontRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motorBackLeft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        motorBackRight.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        frontright.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        frontleft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        backleft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        backright.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         //Hand Initiailization
         grabStone = hardwareMap.servo.get("GS");
@@ -186,15 +189,15 @@ public class Auto_Scanning_test extends LinearOpMode {
                 pos++; //If we didn't see the skystone, move to next position
 
                 //Strafe Left to next block
-                motorFrontLeft.setPower(-.4);
-                motorFrontRight.setPower(.4);
-                motorBackLeft.setPower(.4);
-                motorBackRight.setPower(-.4);
+                frontright.setPower(-.4);
+                frontleft.setPower(.4);
+                backright.setPower(.4);
+                backleft.setPower(-.4);
                 sleep(600);
-                motorFrontLeft.setPower(0);
-                motorFrontRight.setPower(0);
-                motorBackLeft.setPower(0);
-                motorBackRight.setPower(0);
+                frontright.setPower(0);
+                frontleft.setPower(0);
+                backright.setPower(0);
+                backleft.setPower(0);
                 sleep(scanTime); //Wait 2 seconds to scan
                 scan();
                 step++;
@@ -205,15 +208,15 @@ public class Auto_Scanning_test extends LinearOpMode {
                 pos++; //If we didn't see the skystone, move to next position
 
                 //Strafe Left to next block
-                motorFrontLeft.setPower(-.4);
-                motorFrontRight.setPower(.4);
-                motorBackLeft.setPower(.4);
-                motorBackRight.setPower(-.4);
+                frontright.setPower(-.4);
+                frontleft.setPower(.4);
+                backright.setPower(.4);
+                backleft.setPower(-.4);
                 sleep(600);
-                motorFrontLeft.setPower(0);
-                motorFrontRight.setPower(0);
-                motorBackLeft.setPower(0);
-                motorBackRight.setPower(0);
+                frontright.setPower(0);
+                frontleft.setPower(0);
+                backright.setPower(0);
+                backleft.setPower(0);
 
                 Skystone = true; //If position 1 and 2 are not skystone, then it must be position 3
 
@@ -253,10 +256,10 @@ public class Auto_Scanning_test extends LinearOpMode {
             //Parking color sensor
             if (step == 7){ //Start moving
                 stepTelemetry();
-                motorFrontRight.setPower(.4);
-                motorFrontLeft.setPower(.4);
-                motorBackLeft.setPower(.4);
-                motorBackRight.setPower(.4);
+                frontleft.setPower(.4);
+                frontright.setPower(.4);
+                backright.setPower(.4);
+                backleft.setPower(.4);
             }
 
             // Does it see the line?
@@ -282,10 +285,10 @@ public class Auto_Scanning_test extends LinearOpMode {
 
             if (step == 8){ //Stop Motors
                 stepTelemetry();
-                motorFrontRight.setPower(0);
-                motorFrontLeft.setPower(0);
-                motorBackLeft.setPower(0);
-                motorBackRight.setPower(0);
+                frontleft.setPower(0);
+                frontright.setPower(0);
+                backright.setPower(0);
+                backleft.setPower(0);
                 step++;
             }
 
@@ -348,10 +351,10 @@ public class Auto_Scanning_test extends LinearOpMode {
             //Parking color sensor
             if (step == 15){ //Start moving
                 stepTelemetry();
-                motorFrontRight.setPower(.4);
-                motorFrontLeft.setPower(.4);
-                motorBackLeft.setPower(.4);
-                motorBackRight.setPower(.4);
+                frontleft.setPower(.4);
+                frontright.setPower(.4);
+                backright.setPower(.4);
+                backleft.setPower(.4);
             }
 
             // Does it see the line?
@@ -377,28 +380,28 @@ public class Auto_Scanning_test extends LinearOpMode {
 
             if (step == 16){ //Stop Motors
                 stepTelemetry();
-                motorFrontRight.setPower(0);
-                motorFrontLeft.setPower(0);
-                motorBackLeft.setPower(0);
-                motorBackRight.setPower(0);
+                frontleft.setPower(0);
+                frontright.setPower(0);
+                backright.setPower(0);
+                backleft.setPower(0);
                 step++;
             }
 
             if (step == 17){
                 stepTelemetry();
-                motorFrontRight.setPower(-0.1);
-                motorFrontLeft.setPower(-0.1);
-                motorBackLeft.setPower(-0.1);
-                motorBackRight.setPower(-0.1);
+                frontleft.setPower(-0.1);
+                frontright.setPower(-0.1);
+                backright.setPower(-0.1);
+                backleft.setPower(-0.1);
                 step++;
             }
 
             if (step == 18){ //Stop Motors
                 stepTelemetry();
-                motorFrontRight.setPower(0);
-                motorFrontLeft.setPower(0);
-                motorBackLeft.setPower(0);
-                motorBackRight.setPower(0);
+                frontleft.setPower(0);
+                frontright.setPower(0);
+                backright.setPower(0);
+                backleft.setPower(0);
                 grabStone.setPosition(0.6);
                 step++;
             }
@@ -472,29 +475,29 @@ public class Auto_Scanning_test extends LinearOpMode {
         if (opModeIsActive()) {
 
             // Math to calculate each target position for the motors
-            newFrontLeftTarget = motorFrontLeft.getCurrentPosition() + (int)(Inches * COUNTS_PER_INCH);
-            newFrontRightTarget = motorFrontRight.getCurrentPosition() + (int)(Inches * COUNTS_PER_INCH);
-            newBackLeftTarget = motorBackLeft.getCurrentPosition() + (int)(Inches * COUNTS_PER_INCH);
-            newBackRightTarget = motorBackRight.getCurrentPosition() + (int)(Inches * COUNTS_PER_INCH);
+            newFrontLeftTarget = frontleft.getCurrentPosition() + (int)(Inches * COUNTS_PER_INCH);
+            newFrontRightTarget = frontright.getCurrentPosition() + (int)(Inches * COUNTS_PER_INCH);
+            newBackLeftTarget = backleft.getCurrentPosition() + (int)(Inches * COUNTS_PER_INCH);
+            newBackRightTarget = backright.getCurrentPosition() + (int)(Inches * COUNTS_PER_INCH);
 
             //Set Target Positions to respective motors
-            motorFrontLeft.setTargetPosition(newFrontLeftTarget);
-            motorFrontRight.setTargetPosition(newFrontRightTarget);
-            motorBackLeft.setTargetPosition(newBackLeftTarget);
-            motorBackRight.setTargetPosition(newBackRightTarget);
+            frontleft.setTargetPosition(newFrontLeftTarget);
+            frontright.setTargetPosition(newFrontRightTarget);
+            backleft.setTargetPosition(newBackLeftTarget);
+            backright.setTargetPosition(newBackRightTarget);
 
             // Turn On RUN_TO_POSITION
-            motorFrontLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            motorFrontRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            motorBackLeft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            motorBackRight.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            frontleft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            frontright.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            backleft.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            backright.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
             // reset the timeout time and start motion.
             runtime.reset();
-            motorFrontLeft.setPower(speed);
-            motorFrontRight.setPower(speed);
-            motorBackLeft.setPower(speed);
-            motorBackRight.setPower(speed);
+            frontleft.setPower(speed);
+            frontright.setPower(speed);
+            backleft.setPower(speed);
+            backright.setPower(speed);
 
             // keep looping while we are still active, and there is time left, and both motors are running.
             // Note: We use (isBusy() && isBusy()) in the loop test, which means that when EITHER motor hits
