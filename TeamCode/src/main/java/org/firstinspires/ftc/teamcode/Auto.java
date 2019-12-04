@@ -13,7 +13,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
-@Autonomous(name = "6158 2019-2020 Auto", group="Final")
+@Autonomous(name = "Depo Left: 6158 2019-2020 Auto", group="Final")
 public class Auto extends LinearOpMode {
     //
     DcMotor frontleft;
