@@ -366,8 +366,8 @@ public class Auto extends LinearOpMode {
     //The Function below is used to place a skystone
     public void placestone(double inchestoextend, double speedtoextend, double degreestorotate, double speedtorotate){
         int movetoextend = (int)(Math.round(inchestoextend * cpi * meccyBias));
-        int degrees2 = Math.abs(cpr * degreestorotate);
-        int degrees3 = Math.floorDiv(degrees2, 360);
+        int degrees2 = (int)(Math.abs(cpr * degreestorotate));
+        int degrees3 = (int)(Math.floorDiv(degrees2, 360));
         extend.setTargetPosition(extend.getCurrentPosition() + movetoextend);
         rotate.setTargetPosition(rotate.getCurrentPosition() + degrees2);
 
