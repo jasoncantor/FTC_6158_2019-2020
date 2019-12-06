@@ -1,14 +1,11 @@
+package org.firstinspires.ftc.teamcode;
+
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.GyroSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import android.os.Handler;
-import android.os.SystemClock;
-import android.util.Log;
-import android.view.ViewParent;
- 
+
 @TeleOp(name="TeleOp 2019-2020", group="REV")
 public class Teleop_This_Year extends OpMode {
 	DcMotor frontleft, frontright, backleft, backright, armhoz, armro;
@@ -27,47 +24,53 @@ public class Teleop_This_Year extends OpMode {
 		armro = hardwareMap.dcMotor.get("armro"); //this is the arm that rotates
 		arm = hardwareMap.servo.get("arm"); //this is the servo that grabs
 		arm2 = hardwareMap.servo.get("arm2"); // this is the one that grabs too if there is two servos then uncomment this but the first comment slash
-		
+
 		frontright.setDirection(DcMotor.Direction.REVERSE);
 		backright.setDirection(DcMotor.Direction.REVERSE);
 		armhoz.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 		armro.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 		arm.setPosition(0);
 		arm2.setPosition(1); // Uncomment this is there is two servo for grab
-	
+
 	}
- 
+
 	@Override
 	public void loop() {
 		double amountofpowerforarmro, amountofpowerforarmhoz;
 		getJoyVals();
 		//updates joyvalues with deadzones, xyzw
- 
+
 		pwr = y; //this can be tweaked for exponential power increase
-		amountofpowerforarmro = 0.15; // Change this if you want to increase or decrese the power for the amount of power for armro
+		amountofpowerforarmro = 1; // Change this if you want to increase or decrese the power for the amount of power for armro
 		amountofpowerforarmhoz = 0.25; // Change this if you want to increase or decrese the power for the amount of power for armhoz
- 
+
 		frontright.setPower(Range.clip(pwr - x+z, -power, power));
 		backleft.setPower(Range.clip(pwr - x-z, -power, power));
 		frontleft.setPower(Range.clip(pwr + x-z, -power, power));
 		backright.setPower(Range.clip(pwr + x+z, -power, power));
 
-		
-		armro.setPower(Range.clip(amountofpowerforarmro + gamepad2.right_stick_y, -amountofpowerforarmro, amountofpowerforarmro));
-		armhoz.setPower(Range.clip(amountofpowerforarmhoz + gamepad2.left_stick_y, -amountofpowerforarmhoz, amountofpowerforarmhoz));
+
+        /*if (math.abs(gamepad2.left_stick_y) < .2) {
+            armhoz.setMode(DcMotor.RunMode.RESET_ENCODERS);
+            armhoz.setTargetPosition(1);
+            armhoz.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            armhoz.setPower(.01);
+        }*/
+		armro.setPower(Range.clip(/*amountofpowerforarmro + */gamepad2.right_stick_y, -amountofpowerforarmro, amountofpowerforarmro));
+		armhoz.setPower(Range.clip(/*amountofpowerforarmhoz + */gamepad2.left_stick_y, -amountofpowerforarmhoz, amountofpowerforarmhoz));
 
 		if(gamepad2.y){
-			arm.setPosition(0);
-			arm2.setPosition(1); // Uncomment this is there is two servo for grab
-		} else if (gamepad2.x || gamepad2.b){
-			arm.setPosition(0.5);
-			arm2.setPosition(0.5); // Uncomment this is there is two servo for grab
-		} else if (gamepad2.a){
 			arm.setPosition(1);
 			arm2.setPosition(0); // Uncomment this is there is two servo for grab
+		} else if (gamepad2.x || gamepad2.b){
+			arm.setPosition(0.5);
+			arm2.setPosition(-0.5); // Uncomment this is there is two servo for grab
+		} else if (gamepad2.a){
+			arm.setPosition(0);
+			arm2.setPosition(1); // Uncomment this is there is two servo for grab
 		}
 	}
- 
+
 	public void getJoyVals()
 	{
 		y = gamepad1.left_stick_y;
@@ -77,7 +80,7 @@ public class Teleop_This_Year extends OpMode {
 		leftstick = gamepad2.left_stick_y;
 		rightstick = gamepad2.right_stick_y;
 		//updates joystick values
- 
+
 		if(Math.abs(x)<deadzone) x = 0;
 		if(Math.abs(y)<deadzone) y = 0;
 		if(Math.abs(z)<deadzone) z = 0;
