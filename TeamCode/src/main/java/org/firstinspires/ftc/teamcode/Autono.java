@@ -3,7 +3,6 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -14,9 +13,8 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
-@Autonomous(name = "6158 2019-2020 Auto", group="Final")
-@Disabled
-public class Auto extends LinearOpMode {
+@Autonomous(name = "USE", group="Final")
+public class Autono extends LinearOpMode {
     //
     DcMotor frontleft;
     DcMotor frontright;
@@ -52,22 +50,15 @@ public class Auto extends LinearOpMode {
         //
         waitForStartify();
         //
-        strafeToPosition(25.8, 0.2);
-	//
-	turnWithGyro(90, -0.2);
-	//
-	turnWithGyro(90, 0.2);
-	//
-	moveToPosition(78, 0.2);
-	//
-	turnWithGyro(90, -0.2);
-	//
-	turnWithGyro(90, 0.2);
-	//
-	strafeToPosition(-25.0, 0.2);
-	//
-	moveToPosition(-42.4, 0.2);
-	//
+        frontleft.setPower(-0.2);
+        frontright.setPower(-0.2);
+        backleft.setPower(-0.2);
+        backright.setPower(-0.2);
+        sleep(6000);
+        frontright.setPower(0);
+        frontleft.setPower(0);
+        backright.setPower(0);
+        backleft.setPower(0);
     }
     //
     /*

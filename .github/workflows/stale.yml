@@ -1,10 +1,11 @@
 name: Mark stale issues and pull requests
 
 on:
-     check_run:
-      types: status of failure
+  schedule:
+  - cron: "0 0 * * *"
+
 jobs:
-  stale: 
+  stale:
 
     runs-on: ubuntu-latest
 
