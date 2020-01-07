@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
 
-@TeleOp(name="TeleOp 2019-2020", group="REV")
+@TeleOp(name="TeleOp 2019-2020", group="0Final")
 public class Teleop_This_Year extends OpMode {
     DcMotor frontleft, frontright, backleft, backright, armhoz, armro;
     Servo arm, arm2;

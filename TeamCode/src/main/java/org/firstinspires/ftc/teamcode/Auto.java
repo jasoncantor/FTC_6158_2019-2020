@@ -14,8 +14,8 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
-@Autonomous(name = "6158 2019-2020 Auto", group="Final")
-@Disabled
+@Autonomous(name = "6158 2019-2020 Auto", group="0Final") //Hi this should work now if you use the new cables
+
 public class Auto extends LinearOpMode {
     //
     DcMotor frontleft;
@@ -38,6 +38,7 @@ public class Auto extends LinearOpMode {
     Orientation angles;
     Acceleration gravity;
     //
+    
     public void runOpMode(){
         //
         initGyro();
@@ -50,6 +51,9 @@ public class Auto extends LinearOpMode {
         frontright.setDirection(DcMotorSimple.Direction.REVERSE);
         backright.setDirection(DcMotorSimple.Direction.REVERSE);
         //
+        telemetry.addData("Hi this should work now if you use the new cables and please wait 4 seconds");
+        telemetry.update();
+        sleep(3500);
         waitForStartify();
         //
         strafeToPosition(25.8, 0.2);
