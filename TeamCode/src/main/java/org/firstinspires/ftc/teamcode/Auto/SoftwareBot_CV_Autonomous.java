@@ -27,7 +27,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.auto;
 
 import com.disnodeteam.dogecv.CameraViewDisplay;
 import com.disnodeteam.dogecv.DogeCV;
@@ -38,7 +38,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
 import org.opencv.core.Rect;
 
-@Autonomous(name="CV Test", group="Codebusters")
+@Autonomous(name="CV Test", group="Auto Test")
 @Disabled
 public class SoftwareBot_CV_Autonomous extends OpMode
 {

@@ -27,7 +27,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.auto;
 
 import com.disnodeteam.dogecv.CameraViewDisplay;
 import com.disnodeteam.dogecv.DogeCV;
@@ -48,7 +48,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.Position;
 import org.firstinspires.ftc.robotcore.external.navigation.Velocity;
 
 
-@Autonomous(name="C_OneStone_DropLeftBridge", group="Codebusters")
+@Autonomous(name="C_OneStone_DropLeftBridge", group="Auto Test")
 //@Disabled
 public class C_OneStone_DropLeftBridge extends LinearOpMode {
     //Detector declaration

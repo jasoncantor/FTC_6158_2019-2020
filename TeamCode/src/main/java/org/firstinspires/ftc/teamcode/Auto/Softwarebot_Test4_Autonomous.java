@@ -40,7 +40,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
 
-@Autonomous(name="Autonomous Test4", group="Codebusters")
+@Autonomous(name="Autonomous Test4", group="Auto Test")
 @Disabled
 public class Softwarebot_Test4_Autonomous extends LinearOpMode {
 

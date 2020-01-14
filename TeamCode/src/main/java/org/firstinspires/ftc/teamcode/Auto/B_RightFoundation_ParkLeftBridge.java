@@ -27,7 +27,7 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package org.firstinspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode.auto;
 
 import com.disnodeteam.dogecv.CameraViewDisplay;
 import com.disnodeteam.dogecv.DogeCV;
@@ -46,7 +46,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
 
-@Autonomous(name="B_RightFoundation_ParkLeftBridge", group="Codebusters")
+@Autonomous(name="B_RightFoundation_ParkLeftBridge", group="Auto Test")
 //@Disabled
 public class B_RightFoundation_ParkLeftBridge extends LinearOpMode {
     //Detector declaration
