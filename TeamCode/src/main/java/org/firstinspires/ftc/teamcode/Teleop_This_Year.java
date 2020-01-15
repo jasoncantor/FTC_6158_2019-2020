@@ -26,9 +26,7 @@ public class Teleop_This_Year extends OpMode {
         arm2 = hardwareMap.servo.get("arm2"); // this is the one that grabs too if there is two servos then uncomment this but the first comment slash
 
         frontright.setDirection(DcMotor.Direction.REVERSE);
-        backright.setDirection(DcMotor.Direction.FORWARD);
-        backleft.setDirection(DcMotor.Direction.FORWARD);
-        frontleft.setDirection(DcMotor.Direction.REVERSE);
+		backright.setDirection(DcMotor.Direction.REVERSE);
         //armhoz.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
         //
         // armro.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
@@ -78,17 +76,15 @@ public class Teleop_This_Year extends OpMode {
     public void getJoyVals()
     {
         y = gamepad1.left_stick_y;
-        x = gamepad1.left_stick_x;
-        z = gamepad1.right_stick_x;
-        w = gamepad1.right_stick_y;
-        leftstick = gamepad2.left_stick_y;
-        rightstick = gamepad2.right_stick_y;
-        //updates joystick values
-
-        if(Math.abs(x)<deadzone) x = 0;
-        if(Math.abs(y)<deadzone) y = 0;
-        if(Math.abs(z)<deadzone) z = 0;
-        if(Math.abs(w)<0.9) w = 0;
+		x = gamepad1.left_stick_x;
+		z = gamepad1.right_stick_x;
+		w = gamepad1.right_stick_y;
+		//updates joystick values
+ 
+		if(Math.abs(x)<deadzone) x = 0;
+		if(Math.abs(y)<deadzone) y = 0;
+		if(Math.abs(z)<deadzone) z = 0;
+		if(Math.abs(w)<0.9) w = 0;
         if(Math.abs(rightstick)<deadzone) rightstick = 0;
         if(Math.abs(leftstick)<deadzone) leftstick = 0;
         //checks deadzones
