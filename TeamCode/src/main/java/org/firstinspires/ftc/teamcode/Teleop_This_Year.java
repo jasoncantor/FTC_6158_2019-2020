@@ -46,11 +46,10 @@ public class Teleop_This_Year extends OpMode {
         // ant to increase or decrese the power for the amount of power for armro
         amountofpowerforarmhoz = 1; // Change this if you want to increase or decrese the power for the amount of power for armhoz
 
-        frontright.setPower(Range.clip(pwr - z-x, -1, 1));
-        backleft.setPower(Range.clip(pwr + z-x, -1, 1));
-        frontleft.setPower(Range.clip(pwr + z+x, -1, 1));
-        backright.setPower(Range.clip(pwr - z+x, -1, 1));
-
+       frontright.setPower(Range.clip(pwr - x+z, -1, 1));
+	backleft.setPower(Range.clip(pwr - x-z, -1, 1));
+	frontleft.setPower(Range.clip(pwr + x-z, -1, 1));
+	backright.setPower(Range.clip(pwr + x+z, -1, 1));
 
         /*if (math.abs(gamepad2.left_stick_y) < .2) {
             armhoz.setMode(DcMotor.RunMode.RESET_ENCODERS);
@@ -79,6 +78,8 @@ public class Teleop_This_Year extends OpMode {
 		x = gamepad1.left_stick_x;
 		z = gamepad1.right_stick_x;
 		w = gamepad1.right_stick_y;
+	    	leftstick = gamepad2.left_stick_y;
+	    	rightstick = gamepad2.right_stick_y;
 		//updates joystick values
  
 		if(Math.abs(x)<deadzone) x = 0;
