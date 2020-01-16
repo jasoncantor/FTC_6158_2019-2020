@@ -117,10 +117,10 @@ public class Driver_Op_With_IMU extends OpMode
     @Override
     public void init() {
         //Initialize motors
-        motorFL = hardwareMap.get(DcMotor.class, "motorFL");
-        motorFR = hardwareMap.get(DcMotor.class, "motorFR");
-        motorRL = hardwareMap.get(DcMotor.class, "motorRL");
-        motorRR = hardwareMap.get(DcMotor.class, "motorRR");
+        motorFL = hardwareMap.get(DcMotor.class, "frontleft");
+        motorFR = hardwareMap.get(DcMotor.class, "frontright");
+        motorRL = hardwareMap.get(DcMotor.class, "backleft");
+        motorRR = hardwareMap.get(DcMotor.class, "backright");
         intakeR = hardwareMap.get(DcMotor.class, "intakeR");
         intakeL = hardwareMap.get(DcMotor.class, "intakeL");
 

@@ -128,10 +128,10 @@ public class Waypoint_Learning_Tool extends OpMode
     @Override
     public void init() {
         //Initialize motors
-        motorFL = hardwareMap.get(DcMotor.class, "motorFL");
-        motorFR = hardwareMap.get(DcMotor.class, "motorFR");
-        motorRL = hardwareMap.get(DcMotor.class, "motorRL");
-        motorRR = hardwareMap.get(DcMotor.class, "motorRR");
+        motorFL = hardwareMap.get(DcMotor.class, "frontri");
+        motorFR = hardwareMap.get(DcMotor.class, "f");
+        motorRL = hardwareMap.get(DcMotor.class, "backright");
+        motorRR = hardwareMap.get(DcMotor.class, "backright");
         intakeR = hardwareMap.get(DcMotor.class, "intakeR");
         intakeL = hardwareMap.get(DcMotor.class, "intakeL");
 

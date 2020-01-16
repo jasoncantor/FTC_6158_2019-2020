@@ -88,10 +88,10 @@ public class D_Two_Stone_DropLeftBridge extends LinearOpMode {
         detector.init(hardwareMap.appContext, CameraViewDisplay.getInstance(), DogeCV.CameraMode.BACK); //Initialize it with the app context and camera
         detector.enable(); //Start the detector
         //Initialize the drivetrain
-        motorFL  = hardwareMap.get(DcMotor.class, "motorFL");
-        motorFR = hardwareMap.get(DcMotor.class, "motorFR");
-        motorRL = hardwareMap.get(DcMotor.class, "motorRL");
-        motorRR = hardwareMap.get(DcMotor.class, "motorRR");
+        motorFL  = hardwareMap.get(DcMotor.class, "frontleft");
+        motorFR = hardwareMap.get(DcMotor.class, "frontright");
+        motorRL = hardwareMap.get(DcMotor.class, "backleft");
+        motorRR = hardwareMap.get(DcMotor.class, "backright");
         motorFL.setDirection(DcMotor.Direction.FORWARD);
         motorFR.setDirection(DcMotor.Direction.REVERSE);
         motorRL.setDirection(DcMotor.Direction.FORWARD);

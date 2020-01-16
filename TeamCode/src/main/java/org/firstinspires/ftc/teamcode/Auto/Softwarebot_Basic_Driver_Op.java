@@ -72,10 +72,10 @@ public class Softwarebot_Basic_Driver_Op extends OpMode
         // Initialize the hardware variables. Note that the strings used here as parameters
         // to 'get' must correspond to the names assigned during the robot configuration
         // step (using the FTC Robot Controller app on the phone).
-        motorFL  = hardwareMap.get(DcMotor.class, "motorFL");
-        motorFR = hardwareMap.get(DcMotor.class, "motorFR");
-        motorRL = hardwareMap.get(DcMotor.class, "motorRL");
-        motorRR = hardwareMap.get(DcMotor.class, "motorRR");
+        motorFL  = hardwareMap.get(DcMotor.class, "frontleft");
+        motorFR = hardwareMap.get(DcMotor.class, "frontright");
+        motorRL = hardwareMap.get(DcMotor.class, "back");
+        motorRR = hardwareMap.get(DcMotor.class, "backright");
 
         // Most robots need the motor on one side to be reversed to drive forward
         // Reverse the motor that runs backwards when connected directly to the battery

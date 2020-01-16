@@ -81,10 +81,10 @@ public class Softwarebot_Test3_Autonomous extends LinearOpMode {
         detector.enable(); //Start the detector
 
         //Initialize the drivetrain
-        motorFL  = hardwareMap.get(DcMotor.class, "motorFL");
-        motorFR = hardwareMap.get(DcMotor.class, "motorFR");
-        motorRL = hardwareMap.get(DcMotor.class, "motorRL");
-        motorRR = hardwareMap.get(DcMotor.class, "motorRR");
+        motorFL  = hardwareMap.get(DcMotor.class, "front");
+        motorFR = hardwareMap.get(DcMotor.class, "frontrig");
+        motorRL = hardwareMap.get(DcMotor.class, "backright");
+        motorRR = hardwareMap.get(DcMotor.class, "backright");
         motorFL.setDirection(DcMotor.Direction.REVERSE);
         motorFR.setDirection(DcMotor.Direction.FORWARD);
         motorRL.setDirection(DcMotor.Direction.REVERSE);
