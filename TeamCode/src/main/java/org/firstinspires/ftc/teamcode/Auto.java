@@ -51,8 +51,6 @@ public class Auto extends LinearOpMode {
         frontright.setDirection(DcMotorSimple.Direction.REVERSE);
         backright.setDirection(DcMotorSimple.Direction.REVERSE);
         //
-        telemetry.addData("Hi this should work now if you use the new cables and please wait 4 seconds");
-        telemetry.update();
         sleep(3500);
         waitForStartify();
         //
